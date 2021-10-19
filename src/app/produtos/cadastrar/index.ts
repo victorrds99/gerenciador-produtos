@@ -1,0 +1,1 @@
+export * from './cadastrar-produtos.component'

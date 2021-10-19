@@ -1,0 +1,65 @@
+<h1>Cadastrar produto</h1>
+
+<div class="well">
+  <form #formProduto="ngForm">
+    <div class="form-group">
+      <label for="nome">Produto:</label>
+      <input 
+        type="text"
+        class="form-control"
+        id="nome"
+        name="nome"
+        [(ngModel)]="produto.nome"
+        #nome="ngModel"
+        minlength="5" 
+        required> 
+      <div *ngIf="nome.errors && (nome.dirty || nome.touched)"
+           class="alert alert-danger">
+        <div [hidden]="!nome.errors.required">
+          Digite o produto.
+        </div>
+        <div [hidden]="!nome.errors.minlength">
+         O produto deve conter ao menos 5 caracteres.
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+        <label for="preco">Preço:</label>
+        <input 
+          type="text"
+          class="form-control"
+          id="preco"
+          name="preco"
+          [(ngModel)]="produto.preco"
+          #preco="ngModel" 
+          required> 
+        <div *ngIf="preco.errors && (preco.dirty || preco.touched)"
+             class="alert alert-danger">
+          <div [hidden]="!preco.errors.required">
+            Digite o preco.
+          </div>
+          <div [hidden]="!preco.errors.length">
+           O produto deve ser maior que 0.
+          </div>
+        </div>
+      </div>
+
+
+    <div class="form-group text-center">
+      <input 
+        type="submit"
+        class="btn btn-success"
+        (click)="cadastrar()"
+        value="Cadastrar"
+        [disabled]="!formProduto.form.valid">
+      <a [routerLink]="['/produtos']"
+        class="btn btn-default">
+        <span class="glyphicon glyphicon-chevron-left" 
+          aria-hidden="true"></span> Voltar
+      </a>
+    </div>
+
+   
+  </form>
+</div>
